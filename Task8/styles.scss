@@ -1,0 +1,212 @@
+// ---------- Variables ----------
+$primary: #1a73e8;
+$secondary: #0b57d0;
+$accent: #ffb400;
+$bg: #f6f8fb;
+$text: #263238;
+$muted: #6c7a89;
+
+$max-width: 1100px;
+$radius: 10px;
+
+// breakpoints
+$bp-mobile: 600px;
+$bp-tablet: 900px;
+
+// ---------- Mixins ----------
+@mixin center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin card($pad: 18px, $shadow: 0 6px 18px rgba(10, 20, 30, 0.06)) {
+  background: #fff;
+  padding: $pad;
+  border-radius: $radius;
+  box-shadow: $shadow;
+}
+
+// ---------- Base / Global ----------
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  background: $bg;
+  color: $text;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: $max-width;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+// ---------- Header ----------
+.site-header {
+  background: linear-gradient(90deg, $primary, $secondary);
+  color: white;
+  padding: 28px 0;
+
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .brand {
+    font-size: 28px;
+    margin: 0;
+    letter-spacing: 1px;
+  }
+
+  .tagline {
+    margin: 0;
+    opacity: 0.95;
+    font-size: 14px;
+  }
+}
+
+// ---------- Hero ----------
+.hero {
+  @include card(28px);
+  margin: 28px auto;
+  text-align: center;
+
+  h2 {
+    color: $primary;
+    margin: 0 0 12px 0;
+    font-size: 28px;
+  }
+
+  .lead {
+    color: $muted;
+    max-width: 800px;
+    margin: 0 auto 18px auto;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 12px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    cursor: pointer;
+    @include center;
+  }
+
+  .btn-primary {
+    background: $primary;
+    color: white;
+    border: none;
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+    box-shadow: 0 6px 16px rgba(26, 115, 232, 0.12);
+
+    &:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 22px rgba(26, 115, 232, 0.16);
+    }
+  }
+}
+
+// ---------- Features grid ----------
+.features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin: 18px 0;
+
+  .feature {
+    @include card(20px);
+    text-align: center;
+
+    .icon {
+      font-size: 34px;
+      margin-bottom: 10px;
+    }
+
+    h3 {
+      margin: 8px 0;
+      color: $secondary;
+    }
+
+    p {
+      color: $muted;
+      font-size: 14px;
+    }
+  }
+}
+
+// ---------- Cards section ----------
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin: 22px 0;
+
+  .card {
+    @include card(18px);
+    border-left: 4px solid $accent;
+
+    h4 {
+      margin: 0 0 8px 0;
+      color: $primary;
+    }
+
+    p {
+      margin: 0;
+      color: $muted;
+    }
+  }
+}
+
+// ---------- CTA & Footer ----------
+.cta {
+  margin: 30px 0;
+  text-align: center;
+  color: $muted;
+  font-size: 14px;
+}
+
+.site-footer {
+  background: darken($bg, 6%);
+  padding: 18px 0;
+  margin-top: 30px;
+  text-align: center;
+  color: $muted;
+}
+
+// ---------- Responsive ----------
+@media (max-width: $bp-tablet) {
+  .features, .cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .hero h2 {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: $bp-mobile) {
+  .container {
+    padding: 0 12px;
+  }
+
+  .features, .cards {
+    grid-template-columns: 1fr;
+  }
+
+  .site-header .container {
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+  }
+
+  .hero {
+    padding: 20px;
+  }
+}
